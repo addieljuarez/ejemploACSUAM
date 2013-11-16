@@ -84,7 +84,7 @@ function Login(){
 	
 	registro.addEventListener('click', function(e){
 		var registroWin = new Registro();
-		registroWin.open();
+		registroWin.open({transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT});
 	});
 	
 	

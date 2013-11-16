@@ -48,6 +48,35 @@ function Registro(){
     });
     
     
+    //------------------------------------------------
+    // addeventListener
+    //------------------------------------------------
+    
+    userName.addEventListener('return', function(e){
+    		password.focus();
+    });
+    
+    password.addEventListener('return', function(e){
+    		password2.focus();
+    });
+    
+    
+    
+    send.addEventListener('click',function(e){
+    		if (userName.value != '' && password.value != '' && password2.value!='') {
+    			if (password.value === password2.value) {
+    				
+    			}else{
+    				alert('pass not match');
+    			}
+    			
+    		}else{
+    			alert('faltan datos');
+    		}
+    });
+    
+    
+    
     contenedor.add(send);
 	contenedor.add(password);
 	contenedor.add(password2);
