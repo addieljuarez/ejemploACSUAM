@@ -7,6 +7,23 @@ function Main(){
 		backgroundColor:'blue',
 	});
 	
+	var imagen = Titanium.UI.createImageView({
+		top:20,
+		height:250,
+		width:250,
+		borderColor:'#000',
+		borderRadius:5,
+	});
+	
+	var send = Titanium.UI.createButton({
+		top:300,
+		height:40,
+		width:150,
+		title:'enviar foto',
+	});
+	
+	
+	
 	
 	var botonLogout = Titanium.UI.createButton({
 		bottom:10,
@@ -30,7 +47,31 @@ function Main(){
 	});
 	
 	
+	function tomarFoto(){
+		Titanium.Media.openPhotoGallery({
+			success:function(event){
+				var img = event.media;
+				imagen.image = img;
+			},
+			error:function(){
+				alert('error');
+			},
+			cancel:function(){
+				
+			},
+			allowEditing:true,
+		});
+	}
+	
+	
+	imagen.addEventListener('click', function(e){
+		tomarFoto();
+	});
+	
+	
 	self.add(botonLogout);
+	self.add(imagen);
+	self.add(send);
 	return self;
 }
 module.exports = Main;
