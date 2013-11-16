@@ -1,4 +1,7 @@
 function Registro(){
+	
+	var Cloud = require('ti.cloud');
+	
 	var self = Titanium.UI.createWindow({
 		backgroundColor:'pink',
 	});
@@ -65,7 +68,25 @@ function Registro(){
     send.addEventListener('click',function(e){
     		if (userName.value != '' && password.value != '' && password2.value!='') {
     			if (password.value === password2.value) {
-    				
+    				Cloud.Users.create({
+				    email: userName.value,
+				    first_name: 'test_firstname',
+				    last_name: 'test_lastname',
+				    password: password.value,
+				    password_confirmation: password2.value
+				}, function (e) {
+				    if (e.success) {
+				        var user = e.users[0];
+				        alert('Success:\n' +
+				            'id: ' + user.id + '\n' +
+				            'sessionId: ' + Cloud.sessionId + '\n' +
+				            'first name: ' + user.first_name + '\n' +
+				            'last name: ' + user.last_name);
+				    } else {
+				        alert('Error:\n' +
+				            ((e.error && e.message) || JSON.stringify(e)));
+				    }
+				});
     			}else{
     				alert('pass not match');
     			}
