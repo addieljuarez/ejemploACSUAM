@@ -2,6 +2,7 @@ function Login(){
 	
 	
 	var Cloud = require('ti.cloud');
+	var Registro = require('ui/common/registro');
 	
 	
 	var self = Titanium.UI.createWindow({
@@ -81,7 +82,10 @@ function Login(){
 		}
 	});
 	
-	
+	registro.addEventListener('click', function(e){
+		var registroWin = new Registro();
+		registroWin.open();
+	});
 	
 	
 	contenedor.add(inputName);
