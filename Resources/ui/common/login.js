@@ -1,4 +1,9 @@
 function Login(){
+	
+	
+	var Cloud = require('ti.cloud');
+	
+	
 	var self = Titanium.UI.createWindow({
 		backgroundColor:'#fff',
 	});
@@ -55,7 +60,22 @@ function Login(){
 	
 	aceptar.addEventListener('click', function(e){
 		if (inputName.value != '' && inputPass.value !='') {
-			alert('correcto');
+			Cloud.Users.login({
+			    login: inputName.value,
+			    password: inputPass.value
+			}, function (e) {
+			    if (e.success) {
+			        var user = e.users[0];
+			        alert('Success:\n' +
+			            'id: ' + user.id + '\n' +
+			            'sessionId: ' + Cloud.sessionId + '\n' +
+			            'first name: ' + user.first_name + '\n' +
+			            'last name: ' + user.last_name);
+			    } else {
+			        alert('Error:\n' +
+			            ((e.error && e.message) || JSON.stringify(e)));
+			    }
+			});
 		}else{
 			alert('faltan datos');
 		}
