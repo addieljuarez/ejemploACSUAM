@@ -82,6 +82,8 @@ function Registro(){
 				            'sessionId: ' + Cloud.sessionId + '\n' +
 				            'first name: ' + user.first_name + '\n' +
 				            'last name: ' + user.last_name);
+				            
+				        self.close({transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT});
 				    } else {
 				        alert('Error:\n' +
 				            ((e.error && e.message) || JSON.stringify(e)));
